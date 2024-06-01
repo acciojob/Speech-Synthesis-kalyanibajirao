@@ -37,6 +37,26 @@
   const stopButton = document.querySelector('#stop');
 
   //Your code goes here
+	
+
+// Get available voices
+function populateVoices() {
+    voices = speechSynthesis.getVoices();
+    voicesDropdown.innerHTML = voices
+        .map(voice => `<option value="${voice.name}">${voice.name}</option>`)
+        .join('');
+}
+
+// Set voice based on user selection
+function setVoice() {
+    msg.voice = voices.find(voice => voice.name === voicesDropdown.value);
+}
+
+// Speak the provided text
+function speakText() {
+    msg.text = textarea.value;
+    speechSynthesis.speak(msg);
+}
 </script>
 
 </body>
